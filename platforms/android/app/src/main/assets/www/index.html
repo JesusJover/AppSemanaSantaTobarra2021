@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>APP SEMANA SANTA TOBARRA 2021</title>
+    
+<!--    Responsive meta-tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<!--Bootstrap stylesheet    -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  
+<!--App stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+    
+<!--    Font  -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script type="text/javascript">
+            
+        function countdown(id){
+            var fecha=new Date(2021,2,28,11,30,00)
+            var hoy=new Date()
+            var dias=0
+            var horas=0
+            var minutos=0
+            var segundos=0
+
+            if (fecha>hoy){
+                    var diferencia=(fecha.getTime()-hoy.getTime())/1000
+                    dias=Math.floor(diferencia/86400)
+                    diferencia=diferencia-(86400*dias)
+                    horas=Math.floor(diferencia/3600)
+                    diferencia=diferencia-(3600*horas)
+                    minutos=Math.floor(diferencia/60)
+                    diferencia=diferencia-(60*minutos)
+                    segundos=Math.floor(diferencia)
+
+                
+                    document.getElementById(id).innerHTML='<div class="days col-2">' + dias + '</div><div class="hours col-2">' + horas + '</div><div class="minutes col-2">' + minutos + '</div><div class="seconds col-2">' + segundos + '</div>'
+
+                    if (dias>0 || horas>0 || minutos>0 || segundos>0){
+                            setTimeout("countdown(\"" + id + "\")",1000)
+                    }
+            }
+            else{
+                    document.getElementById('restante').innerHTML='<div><p>' + dias + '<span>dias</span></p></div><div><p>' + horas + '<span>horas</span></p></div><div><p>' + minutos + '<spam>minutos</span></p></div><div><p>' + segundos + '<span>seg</span></p></div>'
+            }
+        }
+    </script>
+
+</head>
+<body onload="countdown('contador')">
+    <div class="container navbar-transparent  d-flex align-items-center justify-content-center">
+        <img src="./icons/logo-navbar-positive.png" alt="" class="img-fluid logo">
+    </div>
+    
+   <div class="countdown container">
+       <div class="row d-flex justify-content-center dynamic-counter" id="contador"></div>
+        <div class="row d-flex justify-content-center counter-labels">
+           <div class="days col-2">días</div>
+           <div class="hours col-2">horas</div>
+           <div class="minutes col-2">min</div>
+           <div class="seconds col-2">seg</div>
+       </div>
+       <div class="row d-flex justify-content-center counter-info">PARA SEMANA SANTA TOBARRA 2021</div>
+   </div>
+   
+    <div class="alerts">
+        <div class="alert alert-danger" role="alert">
+            <h6>Procesión cancelada</h6>
+            La procesión de viernes santo por la noche ha sido cancelada por las lluvias. <a href="#" class="alert-link">Más info aquí.</a>
+        </div>
+    </div>   
+    
+    <div class="buttons-to-sections container">
+        <div class="row">
+            <div class="section-button button-left col d-flex button-1 align-items-center" onclick="location.href='./pages/calendario.html'">
+                <img src="./icons/calendario.png">
+                Calendario de actos
+            </div>
+            <div class="section-button button-right col d-flex button-2 align-items-center" onclick="location.href='./pages/procesiones.html'">
+               <img src="./icons/procesiones.png">
+                Procesiones
+            </div>
+        </div>
+        <div class="row">
+            <div class="section-button button-left col button-3 d-flex align-items-center" onclick="location.href='https://infotobarra.jesusjover.es/menu-hermandades.php'">
+                <img src="./icons/hermandades.png">
+                Hermandades y bandas
+            </div>
+            <div class="section-button button-right col button-4 d-flex align-items-center" onclick="location.href='https://infotobarra.jesusjover.es/tambor.php'">
+                <img src="./icons/tambor.png">
+                Tamborada
+            </div>
+        </div> 
+        <div class="row">
+            <div class="section-button button-left col button-5 d-flex align-items-center" onclick="location.href='https://infotobarra.jesusjover.es/puntosdeinteres.php'">
+                <img src="./icons/puntos-interes.png">
+                Puntos de interes
+            </div>
+            <div class="section-button button-right col button-6 d-flex align-items-center" onclick="location.href='https://infotobarra.jesusjover.es/videos.php'">
+                <img src="./icons/videos.png">
+                Vídeos
+            </div>
+        </div>
+        <div class="row">
+            <div class="section-button button-left col button-7 d-flex align-items-center">
+                <img src="./icons/radio.png">
+                Radio Cabildo
+            </div>
+            <div class="section-button button-right col button-8 d-flex align-items-center" onclick="location.href='https://infotobarra.jesusjover.es/info-app.php'">
+                <img src="./icons/info.png">
+                Info de la app
+            </div>
+        </div>  
+    </div>
+    
+    <hr>
+    
+    <div class="last-news-section container">
+        <h3>Últimas noticias</h3>
+        
+        <div class="row">
+            <div class="new row" id="new-1" onclick="redireccion(0); return false;">
+                <div class="col-8 new-title d-flex align-items-center">
+                    <p id="title-new-1"></p>
+                </div>
+                <div class="col-4 new-photo d-flex align-items-center">
+                    <img id="image-new-1" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="new row" id="new-2"  onclick="redireccion(1); return false;">
+                <div class="col-8 new-title d-flex align-items-center">
+                    <p id="title-new-2"></p>
+                </div>
+                <div class="col-4 new-photo d-flex align-items-center">
+                    <img id="image-new-2" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="new row" id="new-3"  onclick="redireccion(2); return false;">
+                <div class="col-8 new-title d-flex align-items-center">
+                    <p id="title-new-3"></p>
+                </div>
+                <div class="col-4 new-photo d-flex align-items-center">
+                    <img id="image-new-3" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="new row" id="new-4"  onclick="redireccion(3); return false;">
+                <div class="col-8 new-title d-flex align-items-center">
+                    <p id="title-new-4"></p>
+                </div>
+                <div class="col-4 new-photo d-flex align-items-center">
+                    <img id="image-new-4" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col more-news" onclick="location.href='./pages/noticias.html'">
+                <a>+ MOSTRAR MÁS NOTICIAS</a> 
+            </div>
+        </div>
+    </div>
+    
+    <br>
+    
+
+    <script>
+        var news;
+        var request = new XMLHttpRequest();
+        request.open("GET", "https://infotobarra.jesusjover.es/noticias/api/pages?token=96fbf0c970eb3b16144238e6b20716c6", true);
+        request.responseType = 'json';
+        
+        request.onload = function (){
+            news = request.response["data"].slice();
+            document.getElementById("title-new-1").innerHTML = news[0]["title"];
+            document.getElementById("image-new-1").src = news[0]["coverImage"];
+            document.getElementById("title-new-2").innerHTML = news[1]["title"];
+            document.getElementById("image-new-2").src = news[1]["coverImage"];
+            document.getElementById("title-new-3").innerHTML = news[2]["title"];
+            document.getElementById("image-new-3").src = news[2]["coverImage"];
+            document.getElementById("title-new-4").innerHTML = news[3]["title"];
+            document.getElementById("image-new-4").src = news[3]["coverImage"];
+        }
+        
+        request.send();
+        
+        function redireccion(x){
+                location.href = news[x]["permalink"];
+            }
+        
+    </script>
+    <script type="text/javascript" src="cordova.js"></script>
+</body>
+</html>

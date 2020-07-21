@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>APP SEMANA SANTA TOBARRA 2021</title>
+    
+    <!--    Responsive meta-tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--Bootstrap stylesheet    -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+  
+    <!--App stylesheet -->
+    <link rel="stylesheet" href="../css/main.css">
+    
+    <!--    Font  -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="container navbar-transparent  d-flex align-items-center justify-content-center">
+       <img src="../icons/back.png" class="position-absolute back-button" onclick="window.history.back();">
+        <img src="../icons/logo-navbar-positive.png" alt="" class="img-fluid logo">
+    </div>
+
+   
+    <br>
+   <script>
+        var procesion;
+        var procesionHTML = "";
+        var id = location.search.substring(1);
+        var request = new XMLHttpRequest();
+        var url = "https://infotobarra.jesusjover.es/api/procesiones/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9&id=" + id;
+        request.open("GET", url, true);
+        request.responseType = 'json';
+        
+        request.onload = function (){
+            
+            procesion = request.response;
+            
+            if(procesion.length == 0){
+                document.getElementById("procesiones").innerHTML = "<h5>No existen eventos en estos momentos</h5>";    
+            }
+            
+            console.log(procesion["nombre"]); 
+            
+        }
+        
+        request.send();
+        
+        
+    </script>
+    
+</body>
+</html>

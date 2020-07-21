@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>APP SEMANA SANTA TOBARRA 2021</title>
+    
+    <!--    Responsive meta-tag-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--Bootstrap stylesheet    -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+  
+    <!--App stylesheet -->
+    <link rel="stylesheet" href="../css/main.css">
+    
+    <!--    Font  -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div class="container navbar-transparent  d-flex align-items-center justify-content-center">
+       <img src="../icons/back.png" class="position-absolute back-button" onclick="window.history.back();">
+        <img src="../icons/logo-navbar-positive.png" alt="" class="img-fluid logo">
+    </div>
+    
+    <div class="container calendar">
+        <div class="container" id="events"></div>
+    </div>
+    <br>
+   <script>
+        var events;
+        var eventsHTML = "";
+        var request = new XMLHttpRequest();
+        request.open("GET", "https://infotobarra.jesusjover.es/api/calendario/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9", true);
+        request.responseType = 'json';
+        
+        request.onload = function (){
+            
+            events = request.response.slice();
+            
+            if(events.length == 0){
+                document.getElementById("events").innerHTML = "<h5>No existen eventos en estos momentos</h5>";    
+            }
+            
+            for(var x = 0; x < events.length; x++){
+                var fecha = new Date(events[x][0]);
+                var opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long',day: 'numeric' };
+                fecha = fecha.toLocaleDateString('es-ES', opcionesFecha);
+                
+                eventsHTML += '<h5 class="mb-0 mt-4">' + fecha + '</h5>';
+                
+                for(var y = 1; y < events[x].length; y++){
+                    eventsHTML += '<div class="row event"><div class="col-2 event-hour">' + events[x][y]["hora"] + '</div><div class="col-10">' + events[x][y]['descripcion'];
+                    
+                    if(events[x][y]["lugar"]!= null){
+                        eventsHTML += '<p class="event-place">Lugar: ' + events[x][y]["lugar"] +'</p>';   
+                    }
+                    
+                    if(events[x][y]["organizador"]!= null){
+                        eventsHTML += '<p class="event-organizator">Organiza: ' + events[x][y]["organizador"] +'</p>';   
+                    }
+                    
+                    eventsHTML += '</div></div>';
+                }
+            }
+            
+            document.getElementById("events").innerHTML = eventsHTML;
+        }
+        
+        request.send();
+        
+        
+    </script>
+    
+</body>
+</html>
